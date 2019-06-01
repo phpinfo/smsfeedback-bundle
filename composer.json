@@ -1,0 +1,26 @@
+{
+    "name": "phpinfo/smsfeedback-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony SmsFeedback SDK integration",
+    "keywords": ["sms"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexey Gromov",
+            "homepage": "https://github.com/phpinfo"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "phpinfo/smsfeedback": "^1.0",
+        "symfony/framework-bundle": "^4.0"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "SmsFeedbackBundle\\": "src/"
+        }
+    }
+}
