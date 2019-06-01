@@ -1,7 +1,7 @@
 Sms Feedback Bundle
 ===================
 
-Provides [SmsFeedback SDK](https://github.com/phpinfo/smsfeedback) integration with symfony. 
+Provides [SmsFeedback SDK](https://github.com/phpinfo/smsfeedback) integration with Symfony 4 Framework. 
 
 Installation
 ------------
