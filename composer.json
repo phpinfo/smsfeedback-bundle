@@ -12,7 +12,7 @@
     ],
     "require": {
         "php": "^7.1",
-        "phpinfo/smsfeedback": "^1.0",
+        "phpinfo/smsfeedback": "^1.1",
         "symfony/framework-bundle": "^4.0"
     },
     "config": {

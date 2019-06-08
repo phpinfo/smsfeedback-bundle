@@ -5,8 +5,8 @@ namespace SmsFeedbackBundle\DependencyInjection;
 
 use Psr\Log\LoggerInterface;
 use SmsFeedback\ApiClient;
-use SmsFeedback\ApiClientBuilder;
 use SmsFeedback\ApiClientInterface;
+use SmsFeedback\Factory\ApiClientFactory;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\Extension;
@@ -37,10 +37,6 @@ class SmsFeedbackExtension extends Extension
         if (!empty($config['logger']['enabled'])) {
             $loggerService = $config['logger']['service'] ?? LoggerInterface::class;
             $logger        = new Reference($loggerService);
-
-            if (isset($config['message_template'])) {
-                $messageTemplate = (string)$config['message_template'];
-            }
         }
 
         $definition = (new Definition(ApiClient::class))
@@ -49,38 +45,8 @@ class SmsFeedbackExtension extends Extension
             ->addArgument($uri)
             ->addArgument($timeout)
             ->addArgument($logger)
-            ->addArgument($messageTemplate)
-            ->setFactory([self::class, 'createApiClient']);
+            ->setFactory([ApiClientFactory::class, 'createApiClient']);
 
         $container->setDefinition(ApiClientInterface::class, $definition);
-    }
-
-    public static function createApiClient(
-        string $login,
-        string $password,
-        ?string $uri,
-        ?int $timeout,
-        ?LoggerInterface $logger,
-        ?string $messageTemplate
-    ): ApiClientInterface {
-        $builder = ApiClientBuilder::create($login, $password);
-
-        if ($uri !== null) {
-            $builder->setBaseUri($uri);
-        }
-
-        if ($timeout !== null) {
-            $builder->setTimeout($timeout);
-        }
-
-        if ($logger !== null) {
-            $builder->setLogger($logger);
-        }
-
-        if ($messageTemplate !== null) {
-            $builder->setLoggerMessageTemplate($messageTemplate);
-        }
-
-        return $builder->getApiClient();
     }
 }

@@ -35,9 +35,6 @@ class Configuration implements ConfigurationInterface
 
                         // Logger service name
                         ->scalarNode('service')->end()
-
-                        // Logger message template
-                        ->scalarNode('message_template')->end()
                     ->end()
                 ->end()
             ->end();

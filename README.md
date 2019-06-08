@@ -107,9 +107,6 @@ sms_feedback:
         
         # Determines logger service name
         service: 'Psr\Log\LoggerInterface'
-        
-        # Logger message template
-        message_template: '{method} {target} HTTP/{version} {code}'
 ```
 
 Resources
